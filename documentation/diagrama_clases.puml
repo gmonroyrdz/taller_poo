@@ -1,0 +1,33 @@
+@startuml "Diagrama de dominio"
+left to right direction
+
+package "mx.uam.dal.entities"{
+    class Persona{
+        -id: int
+        -nombre: String
+        -apellido_paterno: String
+        -apellido_materno: String
+        -edad: int
+        -genero: String
+        -fechaNacimiento: Date
+        -direcciones:List<Direccion>
+        ..
+        +Persona()
+        +Persona(int id, String nombre, String apellido_paterno, String apellido_materno, int edad, String genero)
+        ..
+        +getId():String
+        +setId(String id):void
+        +getNombre():String
+        +setNombre(String nombre):void
+        #generateRFC():String
+        +getEdad():int
+    }
+
+    class Direccion{
+
+    }
+
+}
+
+Persona --> Direccion 
+@enduml

@@ -1,0 +1,17 @@
+@startuml "Sistema de 3 capas"
+package "mx.uam.dal"{
+    component [Data Access Layer] as dal
+    package "entities"{
+        
+    }
+}
+package "mx.uam.bl"{
+    component [Business Layer] as bl
+}
+package "mx.uam.pl"{
+    component [Presentation Layer] as pl
+}
+
+pl <--> bl
+bl <--> dal
+@enduml

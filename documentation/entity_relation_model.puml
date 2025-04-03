@@ -1,0 +1,30 @@
+@startuml "Modelo entidad-relación"
+left to right direction
+entity Persona{
+    PK: int id
+    ..
+    String nombre
+    String apellido_paterno
+    String apellido_materno
+    String edad
+    String genero
+} 
+
+entity Direccion{
+    PK: int id
+    ..
+    String calle
+    String num_ext
+    String num_int
+    String colonia
+    String municipio
+    String poblacion
+    String pais
+    ..
+    FK: int persona_id
+} 
+
+Persona "1" -- "1..*" Direccion
+
+
+@enduml

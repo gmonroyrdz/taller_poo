@@ -1,0 +1,18 @@
+@startuml "Diagrama de Casos de Uso"
+left to right direction
+actor usuario as user
+actor admin as adm
+
+
+rectangle "Sistema de gestión"{
+    usecase (CU1: Login) as cu1
+    usecase (CU2: Gestion de Personas) as cu2
+
+}
+
+user --> cu1
+adm --> cu1
+adm --> cu2
+
+
+@enduml
