@@ -11,7 +11,13 @@ public class Main {
       List<Persona> personas =  gestor.getAll();
       for (Persona persona : personas) {
         System.out.println(persona);
+      }
 
+      gestor.delete(2);
+      System.out.println("RESULTADO");
+      List<Persona> p =  gestor.getAll();
+      for (Persona persona : p) {
+        System.out.println(persona);
       }
 
     }

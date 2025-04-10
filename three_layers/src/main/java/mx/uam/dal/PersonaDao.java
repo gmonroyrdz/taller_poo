@@ -1,6 +1,7 @@
 package mx.uam.dal;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +13,7 @@ import mx.uam.dal.entities.Persona;
 /**
  * DAO para persona (Data Access Object)
  */
-public class PersonaDao {
+public class PersonaDao implements EntityDao<Persona> {
 
         private Connection connection;
 
@@ -45,7 +46,61 @@ public class PersonaDao {
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
                 return null;
-            }
-            
+            }    
         }
+
+        @Override
+        public Persona getById(int id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        }
+
+        public void save(Persona persona){
+            String sql = "INSERT INTO Persona VALUES(0,?,?,?,?,?)";
+            try {
+                PreparedStatement stmt = this.connection.prepareStatement(sql);
+                stmt.setString(1, persona.getNombre());
+                stmt.setString(2, persona.getApellidoPaterno());
+                stmt.setString(3, persona.getApellidoMaterno());
+                stmt.setString(4, persona.getEdad());
+                stmt.setString(5, persona.getGenero());                
+                stmt.execute(sql);
+                
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }    
+        }
+
+
+
+        public void modify(Persona persona){
+            String sql = "UPDATE FROM Persona SET nombre=',apellido_paterno=?, apellido_materno=?,edad=?,genero=? WHERE id=?";
+            try {
+                PreparedStatement stmt = this.connection.prepareStatement(sql);
+                stmt.setString(1, persona.getNombre());
+                stmt.setString(2, persona.getApellidoPaterno());
+                stmt.setString(3, persona.getApellidoMaterno());
+                stmt.setString(4, persona.getEdad());
+                stmt.setString(5, persona.getGenero());
+                stmt.setInt(6, persona.getId());
+                stmt.execute(sql);
+                
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }    
+        }
+
+
+        public void delete(int id){
+            String query = "DELETE from Persona WHERE id=?";
+            try {
+                PreparedStatement stmt = this.connection.prepareStatement(query);
+                stmt.setInt(1, id);
+                stmt.execute();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        
 }
